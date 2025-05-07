@@ -1,0 +1,191 @@
+/* Home.css */
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.home-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
+  padding: 5%;
+  box-sizing: border-box;
+}
+
+.thinker {
+  width: 100%;
+  max-width: 16rem; /* Smaller max-width for mobile */
+  text-align: center;
+  margin: 1rem auto;
+  height: auto; /* Allow height to adjust dynamically */
+}
+
+.thought {
+  font-size: 1rem; /* Smaller font size for mobile */
+  color: #333;
+  animation: fadeInOut 1.5s ease-in-out infinite alternate;
+  min-height: 2rem; /* Adjusted height */
+  margin-top: 0.5rem;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.m_cont {
+  width: 90%; /* Full width for smaller screens */
+  max-width: 30rem; /* 480px in rem */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: auto; /* Allow height to adjust dynamically */
+}
+
+.container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 1rem; /* Rounded corners */
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+  height: auto; /* Allow height to adjust dynamically */
+}
+
+.subtitle {
+  font-size: 0.875rem; /* Smaller font size for mobile */
+  color: gray;
+  margin-bottom: 1rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  flex-wrap: wrap;
+  height: auto; /* Allow height to adjust dynamically */
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card.ai {
+  background-color: #fbe7dd;
+}
+
+.card.pdf {
+  background-color: #e1f8e6;
+}
+
+.icon-box {
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #000;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  flex: 1;
+  margin-left: 0.75rem;
+  text-align: left;
+}
+
+.text h3 {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.text p {
+  margin: 0.125rem 0 0;
+  font-size: 0.75rem;
+  color: gray;
+}
+
+.arrow {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* Medium screens (tablets) */
+@media screen and (min-width: 768px) {
+  .home-body {
+    flex-direction: row;
+    min-height: 100vh; /* Ensure full height on tablets */
+  }
+  .thinker {
+    width: 30%; /* Adjust width for tablets */
+    max-width: 12rem;
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .m_cont {
+    width: 70%; /* Adjust container width */
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .subtitle {
+    font-size: 1rem; /* Slightly larger font size */
+  }
+  .card {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .text h3 {
+    font-size: 1rem;
+  }
+  .text p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Large screens (desktops) */
+@media screen and (min-width: 1024px) {
+  .home-body {
+    padding: 3%;
+    min-height: 100vh; /* Ensure full height on desktops */
+  }
+  .m_cont {
+    width: 60%;
+    margin-top: -8rem; /* Adjusted margin for desktops */
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .container {
+    padding: 1.5rem;
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .subtitle {
+    font-size: 1.125rem;
+  }
+  .card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    height: auto; /* Allow height to adjust dynamically */
+  }
+  .text h3 {
+    font-size: 1.125rem;
+  }
+  .text p {
+    font-size: 1rem;
+  }
+  .arrow {
+    font-size: 1.125rem;
+  }
+}
