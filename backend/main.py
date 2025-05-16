@@ -1,8 +1,9 @@
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import MBartForConditionalGeneration, MBart50TokenizerFast
 from fastapi.middleware.cors import CORSMiddleware
+import nltk.data
+
 app = FastAPI()
 
 app.add_middleware(
@@ -12,20 +13,25 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add the nltk data path to find punkt tokenizer data
+nltk.data.path.append("/root/nltk_data")  # Adjust path if needed
+
 # Define request structure
 class TranslationRequest(BaseModel):
     text: str
     use_pretrained: bool
+
 @app.on_event("startup")
 def load_models():
-    global mbart_model, mbart_tokenizer, transformer, word_map_en, word_map_te, reverse_word_map_te, device
+    global mbart_model, mbart_tokenizer
 
-    # MBart
     pretrained_model_name = "aryaumesh/english-to-telugu"
     mbart_model = MBartForConditionalGeneration.from_pretrained(pretrained_model_name)
     mbart_tokenizer = MBart50TokenizerFast.from_pretrained(pretrained_model_name)
-# ========== Translation Endpoint ==========
+
 from nltk.tokenize import sent_tokenize
+
 @app.post("/translate/")
 async def get_translation(request: TranslationRequest):
     text = request.text.strip()
@@ -67,11 +73,4 @@ async def get_translation(request: TranslationRequest):
         "original_text": request.text,
         "translated_text": full_translation
     }
-    
 
-
-
-
-
-
-    
