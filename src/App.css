@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.thinker {
+  width: 20%;
+  text-align: center;
+}
+
+.thought {
+  font-size: 18px;
+  color: #333;
+  animation: fadeInOut 1.5s ease-in-out infinite alternate;
+  min-height: 40px;
+  margin-top: 10px;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.container {
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card.ai {
+  background-color: #fbe7dd;
+}
+
+.card.pdf {
+  background-color: #e1f8e6; /* Matched to "camera" color in second image */
+}
+
+.icon-box {
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 18px;
+  color: #000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+  flex: 1;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.text h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.text p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: gray;
+}
+
+.arrow {
+  font-size: 16px;
+  color: #555;
+}
+
+.face {
+  position: relative;
+}
