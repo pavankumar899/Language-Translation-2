@@ -49,16 +49,14 @@ function TranslatePage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Add this effect to track window width for responsive design
-
-
-const handleTranslate = async () => {
+  const handleTranslate = async () => {
   setIsTranslating(true);
   try {
     const auth = getAuth();
     const user = auth.currentUser;
     const token = user ? await user.getIdToken() : null;
 
-    const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/', {
+    const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,11 +69,10 @@ const handleTranslate = async () => {
     });
 
     const data = await response.json();
-    if (response.ok) {
+
+    if (response.ok && data?.translated_text) {
       setOutput(data.translated_text);
-
       await saveTranslation(input, data.translated_text);
-
       setHistory(prev => [
         { sourceText: input, translatedText: data.translated_text },
         ...prev,
@@ -90,29 +87,6 @@ const handleTranslate = async () => {
     setIsTranslating(false);
   }
 };
-
-
-      const data = await response.json();
-      if (response.ok) {
-        setOutput(data.translated_text);
-
-        await saveTranslation(input, data.translated_text);
-
-        setHistory(prev => [
-          { sourceText: input, translatedText: data.translated_text },
-          ...prev,
-        ]);
-      } else {
-        setOutput('Error: Could not translate.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setOutput('Error: Could not connect to the server.');
-    } finally {
-      setIsTranslating(false);
-    }
-  };
-
   useEffect(() => {
     const fetchHistory = async () => {
       if (showHistory) {
