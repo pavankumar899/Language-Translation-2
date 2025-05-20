@@ -63,7 +63,7 @@ function TranslatePage() {
     setIsTranslating(true);
     try {
       // const response = await fetch('http://localhost:5000/translate', {
-      const response = await fetch('https://bhargava093-bhargava.hf.space/translate/', {
+      const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
