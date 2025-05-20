@@ -4,6 +4,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Spline from '@splinetool/react-spline';
 import { saveTranslation } from './saveTranslation';
 import { getUserHistory } from './getUserHistory';
+import { getAuth } from 'firebase/auth';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,29 +49,48 @@ function TranslatePage() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Add this effect to track window width for responsive design
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
-  const handleTranslate = async () => {
-    setIsTranslating(true);
-    try {
-      // const response = await fetch('http://localhost:5000/translate', {
-      const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: input,
-          use_pretrained: true,
-        }),
-      });
+
+const handleTranslate = async () => {
+  setIsTranslating(true);
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const token = user ? await user.getIdToken() : null;
+
+    const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
+      body: JSON.stringify({
+        text: input,
+        use_pretrained: true,
+      }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      setOutput(data.translated_text);
+
+      await saveTranslation(input, data.translated_text);
+
+      setHistory(prev => [
+        { sourceText: input, translatedText: data.translated_text },
+        ...prev,
+      ]);
+    } else {
+      setOutput('Error: Could not translate.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    setOutput('Error: Could not connect to the server.');
+  } finally {
+    setIsTranslating(false);
+  }
+};
+
 
       const data = await response.json();
       if (response.ok) {
