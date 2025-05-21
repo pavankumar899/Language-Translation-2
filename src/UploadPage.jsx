@@ -89,7 +89,8 @@ function UploadPage() {
     try {
       const idToken = await user.getIdToken();
       // const response = await fetch('http://localhost:5000/translate/', {
-      const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/', {
+     // const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate/' 
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/translate/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
