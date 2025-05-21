@@ -56,7 +56,7 @@ function TranslatePage() {
     const user = auth.currentUser;
     const token = user ? await user.getIdToken() : null;
 
-    const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate', {
+    /*const response = await fetch('https://Bhargava093-Bhargava.hf.space/translate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +66,19 @@ function TranslatePage() {
         text: input,
         use_pretrained: true,
       }),
-    });
+    });*/
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/translate/`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    ...(token && { Authorization: `Bearer ${token}` }),
+  },
+  body: JSON.stringify({
+    text: input,
+    use_pretrained: true,
+  }),
+});
+
 
     const data = await response.json();
 
