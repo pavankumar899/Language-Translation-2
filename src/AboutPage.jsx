@@ -116,8 +116,8 @@ const AboutPage = () => {
               <p>Backend Framework</p>
             </div>
             <div className="tech-item">
-              <img  alt="MongoDB" />
-              <h3>MongoDB</h3>
+              <img  alt="FireBase" />
+              <h3>FireBase</h3>
               <p>Database Solution</p>
             </div>
             <div className="tech-item">
