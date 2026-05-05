@@ -141,7 +141,8 @@ const bcrypt = require('bcrypt');
 const User = require('./models/User');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://punnaavanish:ATKTjeo0eIQO8CQO@translation.xgmab5x.mongodb.net/?retryWrites=true&w=majority&appName=translation')
+//mongoose.connect('mongodb+srv://punnaavanish:ATKTjeo0eIQO8CQO@translation.xgmab5x.mongodb.net/?retryWrites=true&w=majority&appName=translation')
+mongoose.connect("mongodb://punnaavanish:test123@ac-ljb6kny-shard-00-00.xgmab5x.mongodb.net:27017,ac-ljb6kny-shard-00-01.xgmab5x.mongodb.net:27017,ac-ljb6kny-shard-00-02.xgmab5x.mongodb.net:27017/medrax?ssl=true&replicaSet=atlas-102szi-shard-0&authSource=admin&retryWrites=true&w=majority")
 .then(() => console.log('✅ Connected to MongoDB Atlas'))
 .catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
 
